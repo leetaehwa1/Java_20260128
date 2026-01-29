@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java2_변수 {
+public class Java02_변수 {
 
 	public static void main(String[] args) {
 		double height = 170.5;

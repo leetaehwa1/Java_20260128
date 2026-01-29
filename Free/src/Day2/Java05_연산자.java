@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java5_연산자 {
+public class Java05_연산자 {
 
 	public static void main(String[] args) {
 		//대입 연산

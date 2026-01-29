@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java4_연산자 {
+public class Java04_연산자 {
 
 	public static void main(String[] args) {
 		//코딩에서는 사칙연산 외에도 나머지 연산(%)이 많이 활용된다.

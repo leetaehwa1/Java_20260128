@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java8_비교연산자 {
+public class Java08_비교연산자 {
 	public static void main(String[] args) {
 		//크다, 작다, 같다, 다르다 => true or false로 결과 표현
 		

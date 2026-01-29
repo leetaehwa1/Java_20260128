@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java7_증감연산자 {
+public class Java07_증감연산자 {
 //복습하기
 	public static void main(String[] args) {
 		int a = 8;

@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java9_논리연산자 {
+public class Java09_논리연산자 {
 
 	public static void main(String[] args) {
 		// and(&&), or(||)

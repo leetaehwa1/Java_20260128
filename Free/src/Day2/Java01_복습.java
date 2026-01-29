@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java1_복습 {
+public class Java01_복습 {
 
 	public static void main(String[] args) {
 //		System.out.println("주석은 실행에 영향을 주지 않는다.");

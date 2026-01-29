@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java3_연산자 {
+public class Java03_연산자 {
 
 	public static void main(String[] args) {
 		// 수학에서 사용하는 사칙연산 (+,-,*,/) 사용

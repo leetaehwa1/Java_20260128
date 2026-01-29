@@ -1,6 +1,6 @@
 package Day2;
 
-public class Java6_증감연산자 {
+public class Java06_증감연산자 {
 
 	public static void main(String[] args) {
 		int a = 10;
