@@ -1,6 +1,6 @@
 package Day3;
 
-public class Java1_복습 {
+public class Java01_복습 {
 
 	public static void main(String[] args) {
 
