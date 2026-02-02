@@ -33,6 +33,6 @@ public class Java08_퀴즈2 {
 		System.out.println("oddCnt =>" + oddCnt);
 		System.out.println("evenCnt =>" + evenCnt);
 		System.out.println(Arrays.toString(arr));
-
+//클래스는 객체를 만드는 것, 객체는 클래스의 의해 실제로 구현되는 것, 생성자는 객체를 초기화(리턴 없음.)
 	}
 }
