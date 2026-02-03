@@ -18,6 +18,7 @@ public class StuMain {
 		System.out.println(kim.money_708);
 
 		Student.money_708 = Student.money_708 - 30000;
+		System.out.println(Student.money_708);
 	}
 
 }
