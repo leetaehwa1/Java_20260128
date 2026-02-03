@@ -10,8 +10,6 @@ public class Java01_복습 {
 		String name = "홍길동";
 		System.out.println(name); // 홍길동 출력
 		System.out.println("name"); // name 출력
-		name = "이태화";
-		System.out.println(name);
 
 		int age = 30;
 		System.out.println(age);
