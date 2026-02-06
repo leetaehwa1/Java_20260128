@@ -3,7 +3,8 @@ package Day8;
 public class Java01_업캐스팅 {
 	static void test1(Point p) {// 부모 클래스를 인자로 선언 해놓으면
 		if (p instanceof Point3D) {
-			System.out.println(p.getX() * p.getX());
+			
+			System.out.println(p.getX() * p.getX() * 3);
 		}
 		System.out.println(p.getX() * p.getY()); // 자식 클래스들 모두 들어갈 수 있음.
 	}
