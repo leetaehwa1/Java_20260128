@@ -25,6 +25,8 @@ public class 중복코드첨삭 { // 똑같은 게 반복되는 게 있다고 �
 		while (true) {
 			System.out.print("[1. 과일 등록, 2. 가격 수정, 3. 과일 판매] :");
 			int menu = s.nextInt();
+			
+			
 			if (menu == 1) {
 				// 과일 이름(name), 개수(count), 가격(price)을 입력받아서
 				// 맵에 저장 후 , 해당 맵을 리스트에 저장.
