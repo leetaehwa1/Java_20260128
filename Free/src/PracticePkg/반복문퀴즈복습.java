@@ -1,4 +1,4 @@
-package 개인연습용패키지;
+package PracticePkg;
 
 public class 반복문퀴즈복습 {
 	public static void main(String[] args) {

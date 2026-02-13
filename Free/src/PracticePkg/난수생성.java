@@ -1,4 +1,4 @@
-package 개인연습용패키지;
+package PracticePkg;
 
 import java.util.Arrays;
 import java.util.Random;
