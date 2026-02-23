@@ -167,7 +167,7 @@ public class Java06_과일가게 {
 				System.out.print("판매 개수 : ");
 				int count = s.nextInt();
 				if (rs.getInt("COUNT") >= count) {
-					sql = "UPDATE TBL_FRUIT SET " + "COUNT = " + (rs.getInt("COUNT") - count) + " WHERE NAME = '" + name
+					sql = "UPDATE TBL_FRUIT SET COUNT = " + (rs.getInt("COUNT") - count) + " WHERE NAME = '" + name
 							+ "'";
 					int result = stmt.executeUpdate(sql);
 					if (result > 0) {
