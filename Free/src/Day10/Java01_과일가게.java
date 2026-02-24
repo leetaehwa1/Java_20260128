@@ -12,6 +12,7 @@ public class Java01_과일가게 {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 
 		while (true) {
+			
 			System.out.print("[1. 과일 등록, 2. 가격 수정, 3. 과일 판매] :");
 			int menu = s.nextInt();
 			if (menu == 1) {
@@ -89,7 +90,7 @@ public class Java01_과일가게 {
 						int count = s.nextInt();
 						if ((int) fruit.get("count") > count) {
 							fruit.put("count", (int) fruit.get("count") - count);
-							System.out.println(name + "를 " + count + "개 판매하였습니다.");
+							System.out.println(name + "님의 포인트가 " + count + "개 판매하였습니다.");
 						} else {
 							System.out.println("상품 개수보다 많이 구매할 수 없습니다.");
 						}

@@ -2,6 +2,8 @@ package Day16;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import Day13.DBClass;
@@ -9,7 +11,67 @@ import Day13.DBClass;
 public class 수도퀴즈_DB {
 	static Scanner s = new Scanner(System.in);
 
-	public static void runQuiz(Statement stmt) {
+	public static HashMap<String, Object> login(Statement stmt) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("loginFlg", false);
+		try {
+			while (true) {
+				System.out.print("[1 . 로그인, 2. 회원가입, 3. 종료] : ");
+				int menu = s.nextInt();
+				if (menu == 1) {
+					System.out.print("ID 입력 : ");
+					String id = s.next();
+					System.out.print("비밀번호 입력 : ");
+					String pwd = s.next();
+					String sql = "SELECT * FROM TBL_USER " + "WHERE USERID = '" + id + "' AND PWD = '" + pwd + "'";
+					ResultSet rs = stmt.executeQuery(sql);
+					if (rs.next()) {
+						System.out.println(rs.getString("USERNAME") + "님, 안녕하세요! 로그인에 성공했습니다.");
+						map.put("id", rs.getString("USERID"));
+						map.put("name", rs.getString("USERNAME"));
+						map.put("loginFlg", true);
+						return map;
+					} else {
+						System.out.println("아이디/비밀번호를 확인해주세요.");
+					}
+				} else if (menu == 2) {
+					System.out.print("ID 입력 : ");
+					String id = s.next();
+					String sql = "SELECT * FROM TBL_USER WHERE USERID = '" + id + "'";
+					ResultSet rs = stmt.executeQuery(sql);
+					if (rs.next()) {
+						System.out.println("이미 사용중인 ID입니다.");
+					} else {
+						System.out.print("비밀번호 입력 : ");
+						String pwd = s.next();
+						System.out.print("이름 : ");
+						String name = s.next();
+						sql = "INSERT INTO TBL_USER VALUES(" + "'" + id + "'," + "'" + pwd + "'," + "'" + name + "')";
+						int result = stmt.executeUpdate(sql);
+						if (result > 0) {
+							System.out.println(name + "님 회원가입을 환영합니다.");
+						} else {
+							System.out.println("오류가 발생했습니다 다시 시도하세요.");
+						}
+					}
+
+				} else if (menu == 3) {
+					System.out.println("종료되었습니다.");
+					return map;
+				} else {
+					System.out.println("1~3중에 선택해주세요.");
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+
+		return map;
+	}
+
+	public static void runQuiz(Statement stmt, String id) {
 		try {
 			// 문제수를 사용자로부터 직접 입력 받기
 			// 최소 3, 최대 10
@@ -29,6 +91,7 @@ public class 수도퀴즈_DB {
 			ResultSet rs = stmt.executeQuery(sql);
 			int quizNum = 1;
 			int correctNum = 0;
+			ArrayList<HashMap<String, String>> list = new ArrayList<>();
 
 			while (rs.next()) {
 				System.out.print(quizNum + "번) " + rs.getString("COUNTRY") + " : ");
@@ -39,7 +102,32 @@ public class 수도퀴즈_DB {
 					correctNum++;
 				} else {
 					System.out.println("오답입니다. 정답은 " + rs.getString("CAPITAL"));
+					HashMap<String, String> map = new HashMap<>();
+					map.put("QUIZ_ID", rs.getString("QUIZ_ID"));
+					map.put("COUNTRY", rs.getString("COUNTRY"));
+					map.put("CAPITAL", rs.getString("CAPITAL"));
+					list.add(map);
+
+//					sql = "SELECT * FROM TBL_NOTE "
+//							+ "WHERE USERID = '" + id +"' AND QUIZ_ID = " +rs.getInt("QUIZ_ID");
+//					ResultSet rs2 = stmt.executeQuery(sql);
+//					if(rs2.next()) {
+//						System.out.println("이미 등록됨");
+//					}else {
+//						System.out.println("추가");
+//					}
+
+//					sql = "INSERT INTO TBL_NOTE VALUES("
+//							+"'" + id +"', "
+//							+"'" + rs.getString("QUIZ_ID") +"', "
+//							+"'" + rs.getString("COUNTRY") +"', "
+//							+"'" + rs.getString("CAPITAL") +"') ";
+//					stmt.executeUpdate(sql);
 				}
+			}
+			System.out.println(list);
+			for (int i = 0; i < list.size(); i++) {
+				// insert 쿼리 실행
 			}
 			System.out.println(count + "개 문제 중" + correctNum + "개 정답!");
 
@@ -135,13 +223,18 @@ public class 수도퀴즈_DB {
 
 		DBClass db = new DBClass();
 		Statement stmt = db.getStmt();
-		boolean closeFlg = true;
+
+		HashMap<String, Object> map = login(stmt); // 로그인이 성공했을 때만 리턴.
+		boolean closeFlg = (boolean) map.get("loginFlg");
 		while (closeFlg) {
+			String id = (String) map.get("id");
+			String name = (String) map.get("name");
+			System.out.println(name + "님 메뉴를 선택해주세요.");
 			System.out.print("[ 1. 문제 풀이, 2. 문제 추가, 3. 문제 수정, 4. 문제 삭제, 5. 종료 ] : ");
 			int menu = s.nextInt();
 			switch (menu) {
 			case 1:
-				runQuiz(stmt);
+				runQuiz(stmt, id);
 				break;
 			case 2:
 				addQuiz(stmt);
